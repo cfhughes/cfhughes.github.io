@@ -27,12 +27,12 @@ $(function(){
                 for (var k = 0;k<data[i-1][j].length;k++){
                     hist[j][k] = [];
                     hist[j][k][0] = data[i-1][j][k][0] + (Math.random() * 12) - 6;
-                    if (c % 3 == 0){
-                        power = 2;
-                    }else{
-                        power = 1;
+                    var factor = Math.pow(i,3);
+                    var d = factor/2;
+                    if (c % 3 == 1){
+                        d = 0;
                     }
-                    hist[j][k][1] = data[i-1][j][k][1] + (Math.random() * Math.pow(i,power)/2);
+                    hist[j][k][1] = data[i-1][j][k][1] + (Math.random() * factor) - d;
                 }
             }
             //console.log("Entry added with "+hist.length+" entries");
