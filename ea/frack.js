@@ -22,7 +22,7 @@ $(function(){
 
         for(var i = 1;i<50;i++){
             var hist = [];
-            var factor = Math.pow(i,3);
+            var factor = Math.pow(i,3)/5;
             var d = factor/2;
             console.log(c);
             if (c % 3 == 1){
