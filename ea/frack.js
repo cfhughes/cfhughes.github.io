@@ -29,6 +29,7 @@ $(function(){
                     hist[j][k][0] = data[i-1][j][k][0] + (Math.random() * 12) - 6;
                     var factor = Math.pow(i,3);
                     var d = factor/2;
+                    console.log(c);
                     if (c % 3 == 1){
                         d = 0;
                     }
