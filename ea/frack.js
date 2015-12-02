@@ -1,9 +1,8 @@
 var pages= ['facebook','reddit','nytimes','ebay','okcupid','google','youtube','craigslist','apple','amazon'];
 var num = 10;
-
+var paths = [];
 $(function(){
 
-    var paths = [];
     var data = [];
     var init = function(){
 
@@ -24,7 +23,7 @@ $(function(){
             var hist = [];
             var factor = Math.pow(i,3)/5;
             var d = factor/2;
-            console.log(c);
+            //console.log(c);
             if (c % 3 == 1){
                 d = 0;
             }
@@ -79,7 +78,7 @@ $(function(){
         currentMousePos.y = event.pageY;
     });
 
-    window.setInterval(update, 100);
+    var updateI = window.setInterval(update, 100);
     var c = 0;
     $("body").click(function(){
         c++;
@@ -90,4 +89,41 @@ $(function(){
             init();
         })
     });
+    var p = 0;
+    var chaos = function(){
+        for (var k = 0; k < paths.length; k++) {
+            var segments = paths[k].pathSegList;
+            for (var i = 0; i < segments.length; i++) {
+                segments.getItem(i).y+=(Math.random() * .8) - .4;
+                segments.getItem(i).x+=(Math.random() * .8) - .4;
+            }
+        }
+    }
+    var chaosI;
+    $(document).keypress(function(e) {
+      if(e.which == 48) {
+        // 0 pressed
+        if (p == 0){
+            p = 1;
+            window.clearInterval(updateI);
+            $("#start").hide();
+            $("#main").show();
+            for (var k = 0; k < paths.length; k++) {
+                var segments = paths[k].pathSegList;
+                for (var i = 0; i < segments.length; i++) {
+                    segments.getItem(i).y = data[0][k][i][1];
+                    segments.getItem(i).x = data[0][k][i][0];
+                }
+            }
+	    chaosI = window.setInterval(chaos, 100);
+	}else{
+            p = 0;
+            window.clearInterval(chaosI);
+            $("#main").hide();
+            $("#start").show();
+            updateI = window.setInterval(update, 100);
+        }
+      }
+    });
+
 });
