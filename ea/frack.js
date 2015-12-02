@@ -22,17 +22,18 @@ $(function(){
 
         for(var i = 1;i<50;i++){
             var hist = [];
+            var factor = Math.pow(i,3);
+            var d = factor/2;
+            console.log(c);
+            if (c % 3 == 1){
+                d = 0;
+            }
             for(var j = 0;j<data[i-1].length;j++){
                 hist[j] = [];
                 for (var k = 0;k<data[i-1][j].length;k++){
                     hist[j][k] = [];
                     hist[j][k][0] = data[i-1][j][k][0] + (Math.random() * 12) - 6;
-                    var factor = Math.pow(i,3);
-                    var d = factor/2;
-                    console.log(c);
-                    if (c % 3 == 1){
-                        d = 0;
-                    }
+                    
                     hist[j][k][1] = data[i-1][j][k][1] + (Math.random() * factor) - d;
                 }
             }
