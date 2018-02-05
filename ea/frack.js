@@ -15,7 +15,7 @@ $(function(){
         $("path").each(function(){
             paths.push($(this).get(0));
             var hist = [];
-            var segments = $(this).get(0).pathSegList;
+            var segments = $(this).get(0).getPathData();
             for(var i = 0;i<segments.length;i++){
                 hist[i] = [segments.getItem(i).x,segments.getItem(i).y];
             }
